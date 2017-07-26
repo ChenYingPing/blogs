@@ -975,9 +975,9 @@ f.close()
 * ARC->MRC：ARC代码会在某些情况多出一些retain和release的指令，例如调用一个方法，它返回的对象会被retain，退出作用域后会被release，MRC就不需要，汇编指令变多，机器码变多，可执行文件就变大了。ARC对可执行文件大小的影响几乎都是在代码段，通过实验，结论是ARC大概会使代码段增加10%的size，考虑代码段占可执行文件大约有80%，估计对整个可执行文件的影响会是8%。但考虑到它的可实施性，可以忽略。
 
 ##3.参考资料
-* 编译器
-* Mach-O 可执行文件 
-* iOS APP可执行文件的组成
-* Clang和LLVM的关系及整体架构
+* [编译器](https://objccn.io/issue-6-2/)
+* [Mach-O 可执行文件](https://objccn.io/issue-6-3/) 
+* [iOS APP可执行文件的组成](http://blog.cnbang.net/tech/2296/)
+* [Clang和LLVM的关系及整体架构](http://blog.csdn.net/snsn1984/article/details/17716261)
 
 
