@@ -1,6 +1,6 @@
 # iOS内存优化与监控
 
-有一种情况是开发期检测不出来的，但是用户在使用时确实因为内存溢出致使app crash 。并且内存溢出的crash时，是不会有什么堆栈信息的，像umeng，透视宝等工具是无法清晰的捕捉到这些奔溃的，这时候就需要我们使用一些其他的办法来监控OOM。
+有一种情况奔溃在开发期暴露不了，但是用户在使用时确实因为内存溢出致使app crash 。并且内存溢出的crash时，是不会有什么堆栈信息的，像umeng，透视宝等工具是无法清晰的捕捉到这些奔溃的，这时候就需要我们使用一些其他的办法来监控OOM。
 
 
 先了解一下OOM的流程，以及如何捕捉OOM
@@ -61,7 +61,7 @@ UIGraphicsBeginImageContext和UIGraphicsEndImageContext必须成双出现，不�
 
 4）互相引用：
 
-比较容易出现互相引用的地方是block里使用了self，而self又持有这个block，只能通过代码规范来避免。另外NSTimer的target、CAAnimation的delegate，是对Obj强引用。目前微信通过自己实现的MMNoRetainTimer和MMDelegateCenter来规避这类问题。
+比较容易出现互相引用的地方是block里使用了self，而self又持有这个block，只能通过代码规范来避免。另外NSTimer的target、CAAnimation的delegate，是对Obj强引用。目前微信通过自己实现的MMNoRetainTimer和MMDelegateCenter来规避这类问题。**其实实现MMNoRetainTimer等类，就是让 类.delegate = 类  用自身的互相引用，代替互相引用**
 
 5）大图片处理：
 
